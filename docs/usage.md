@@ -6,7 +6,7 @@ Choose a region and forecast location, or enter coastal coordinates and select U
 
 ## Supported workflow
 
-1. Eleven regions and 26 coastal locations plus custom coordinates.
+1. Twelve regions, including 46 named North Carolina beaches, plus custom coordinates.
 2. Seven-day live wave, swell and wind forecasts.
 3. Local-time day selection, metric/imperial units, saved location and CSV.
 
@@ -19,3 +19,5 @@ Run the commands in the README. Invalid inputs produce explicit errors rather th
 Offshore grid forecasts do not resolve every beach break, tide, current, hazard, or local wind effect. Check conditions locally and follow lifeguard guidance.
 
 Tests use synthetic fixtures. These tests do not certify hardware compatibility, real-world forecast quality, trained-model accuracy, or production suitability for every input.
+
+North Carolina now has 46 named choices, including Indian Beach and North Topsail Beach. Location groups run from the northern Outer Banks to the Brunswick Islands.

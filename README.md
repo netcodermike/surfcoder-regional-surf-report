@@ -6,7 +6,7 @@ Choose a surf region or coordinates and compare live marine forecasts, swell per
 
 ## What it does
 
-- Eleven regions and 26 coastal locations plus custom coordinates
+- Twelve regions, including 46 named North Carolina beaches, plus custom coordinates
 - Seven-day live wave, swell and wind forecasts
 - Local-time day selection, metric/imperial units, saved location and CSV
 
@@ -39,3 +39,7 @@ No analytics or accounts are built in. Local file tools process only the paths y
 ## Development
 
 Run the validation commands above before submitting changes. GitHub Actions runs these checks on pushes and pull requests. See the workflow for the reproducible toolchain. A successful workflow verifies the tested paths; manual audio-device behavior is documented separately.
+
+## North Carolina beaches
+
+Choose **North Carolina** under Your region, then choose a named beach under Forecast location. The 46 locations are grouped into five coastal areas. See [the beach catalogue](docs/north-carolina-beaches.md). Nearby beaches may share an offshore model cell; named presets do not imply beach-specific observations.
