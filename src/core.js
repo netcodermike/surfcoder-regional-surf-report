@@ -10,7 +10,7 @@ export const regions={
 'Japan':[['Chiba',35.32,140.48],['Shonan',35.29,139.44]],
 'Central America':[['Tamarindo, Costa Rica',10.3,-85.89],['El Tunco, El Salvador',13.47,-89.38]],
 'South America':[['Florianopolis, Brazil',-27.65,-48.38],['Pichilemu, Chile',-34.4,-72.08]]};
-export function coordinates(lat,lon){lat=Number(lat);lon=Number(lon);if(!Number.isFinite(lat)||!Number.isFinite(lon)||lat < -85||lat>85||lon < -180||lon>180)throw Error('Use latitude âˆ’85 to 85 and longitude âˆ’180 to 180');return {lat,lon}}
-export function compass(deg){return deg==null?'â€”':['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'][Math.round(((deg%360)+360)%360/22.5)%16]}
+export function coordinates(lat,lon){lat=Number(lat);lon=Number(lon);if(!Number.isFinite(lat)||!Number.isFinite(lon)||lat < -85||lat>85||lon < -180||lon>180)throw Error('Use latitude −85 to 85 and longitude −180 to 180');return {lat,lon}}
+export function compass(deg){return deg==null?'—':['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'][Math.round(((deg%360)+360)%360/22.5)%16]}
 export function height(m,units){return m==null?null:m*(units==='imperial'?3.28084:1)}
 export function align(marine,weather){if(!marine?.hourly?.time?.length)throw Error('No marine forecast returned for this location');const wind=new Map((weather?.hourly?.time||[]).map((t,i)=>[t,{speed:weather.hourly.wind_speed_10m?.[i],wind_direction:weather.hourly.wind_direction_10m?.[i]}]));return marine.hourly.time.map((time,i)=>({time,wave:marine.hourly.wave_height?.[i]??null,period:marine.hourly.wave_period?.[i]??null,direction:marine.hourly.wave_direction?.[i]??null,swell:marine.hourly.swell_wave_height?.[i]??null,swellPeriod:marine.hourly.swell_wave_period?.[i]??null,...(wind.get(time)||{})}))}
