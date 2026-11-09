@@ -43,3 +43,7 @@ Run the validation commands above before submitting changes. GitHub Actions runs
 ## North Carolina beaches
 
 Choose **North Carolina** under Your region, then choose a named beach under Forecast location. The 46 locations are grouped into five coastal areas. See [the beach catalogue](docs/north-carolina-beaches.md). Nearby beaches may share an offshore model cell; named presets do not imply beach-specific observations.
+
+## Seven-day swell explorer
+
+The live demo now includes separate combined-sea, swell, secondary/tertiary swell, and wind-wave graphs with height/period views, component toggles, an hourly readout, and daily maximum tables. Missing model components remain unavailable. See [data and limitations](docs/weekly-forecast.md). All new graph data is from Open-Meteo; no buoy observations are implied.
