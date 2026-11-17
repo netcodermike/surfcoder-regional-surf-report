@@ -3,6 +3,13 @@ test('coordinates, unit conversion, compass and hourly alignment',()=>{assert.th
 
 test("optional swell partitions align and preserve missing values",()=>{const rows=c.align({hourly:{time:[1,2],secondary_swell_wave_height:[1.2,null],secondary_swell_wave_period:[12,13],tertiary_swell_wave_height:[null,null],wind_wave_height:[.4,.5]}},null);assert.equal(rows[0].secondary,1.2);assert.equal(rows[1].secondary,null);assert.equal(rows[1].secondaryPeriod,13);assert.equal(rows[0].tertiary,null);assert.equal(rows[0].windWave,.4);assert.equal(rows[0].swellDirection,null)});
 
+test('air temperatures align by timestamp and preserve sparse and subzero readings', () => {
+  const rows = c.align({ hourly: { time: [1, 2, 3, 4] } }, {
+    hourly: { time: [2, 4, 3], temperature_2m: [-5, null, 0] },
+  });
+  assert.deepEqual(rows.map(row => row.airTemperatureF), [undefined, -5, 0, null]);
+});
+
 import { nearestBuoys, parseReadings } from '../src/buoys.js';
 import { tideAt, tideStation } from '../src/tides.js';
 
