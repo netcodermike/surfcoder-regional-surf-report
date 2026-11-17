@@ -9,7 +9,8 @@ Choose a surf region or coordinates and compare marine forecasts with measuremen
 - Twelve regions, including 46 named North Carolina beaches, plus custom coordinates
 - Seven-day live wave, swell and wind forecasts
 - Recent NOAA buoy observations ranked by distance from the selected location
-- Local-time day selection, metric/imperial units, saved location and CSV
+- Full-width seven-day swell graph and a latest-first hourly forecast table in local time
+- Metric/imperial units, saved location and CSV
 
 ## Requirements
 
