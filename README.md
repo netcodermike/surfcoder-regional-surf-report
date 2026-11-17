@@ -51,7 +51,7 @@ The seven-day explorer shows combined sea, swell, secondary and tertiary swell, 
 
 ## Nearby buoys
 
-The report opens at **Indian Beach, NC** unless a different location was explicitly saved. Select **Nearby buoys** to see the three closest stations in the wave buoy catalog within 250 km. For Indian Beach, NOAA station [41159, Onslow Bay Outer](https://www.ndbc.noaa.gov/station_page.php?station=41159), is about 33 miles away.
+The report opens at **Indian Beach, NC** unless a different location was explicitly saved. The nearest buoy’s recent observations appear by default beneath the charts. Pick from up to three stations in the wave buoy catalog within 250 km, or select **Nearby buoys** to focus on observations. For Indian Beach, NOAA station [41159, Onslow Bay Outer](https://www.ndbc.noaa.gov/station_page.php?station=41159), is about 33 miles away.
 
 The nearby view shows significant wave height, peak period, wave direction, water temperature, and the available readings from the past 36 hours, newest first. For station 41159 it uses the [buoy operator’s feed via SECOORA](https://erddap.secoora.org/erddap/tabledap/41159-lej3wave-lej3w-onslow-b.html), with the [NOAA CoastWatch NDBC dataset](https://coastwatch.pfeg.noaa.gov/erddap/tabledap/cwwcNDBCMet.html) as a fallback. Other stations use NOAA CoastWatch. Readings older than three hours are marked. The display uses your chosen units and your browser’s local time. Choose **Station and recent history** for additional records, including the swell and wind-wave breakdown when NOAA provides it. **Search nearby on NOAA** covers stations outside the app’s catalog.
 
