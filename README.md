@@ -7,7 +7,7 @@ Choose a surf region or coordinates and compare marine forecasts with measuremen
 ## What it does
 
 - Twelve regions, including 46 named North Carolina beaches, plus custom coordinates
-- Seven-day live wave, swell and wind forecasts
+- Aligned seven-day charts for swell, NOAA tide predictions, and wind speed and direction
 - Recent NOAA buoy observations ranked by distance from the selected location
 - Full-width seven-day swell graph with hover readings and a collapsible chronological hourly forecast in local time
 - Metric/imperial units, saved location and CSV
@@ -47,7 +47,7 @@ Choose **North Carolina** under Your region, then choose a named beach under For
 
 ## Seven-day swell explorer
 
-The live demo now includes separate combined-sea, swell, secondary/tertiary swell, and wind-wave graphs with height/period views, component toggles, an hourly readout, and daily maximum tables. Missing model components remain unavailable. See [data and limitations](docs/weekly-forecast.md). All new graph data is from Open-Meteo; no buoy observations are implied.
+The seven-day explorer shows combined sea, swell, secondary and tertiary swell, and wind waves with height and period views. NOAA tide heights and Open-Meteo wind speed and direction have their own charts on the same timeline. Hover over any chart or select an hour to compare the forecasts. See [data sources and coverage](docs/weekly-forecast.md).
 
 ## Nearby buoys
 

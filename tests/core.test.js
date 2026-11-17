@@ -4,6 +4,7 @@ test('coordinates, unit conversion, compass and hourly alignment',()=>{assert.th
 test("optional swell partitions align and preserve missing values",()=>{const rows=c.align({hourly:{time:[1,2],secondary_swell_wave_height:[1.2,null],secondary_swell_wave_period:[12,13],tertiary_swell_wave_height:[null,null],wind_wave_height:[.4,.5]}},null);assert.equal(rows[0].secondary,1.2);assert.equal(rows[1].secondary,null);assert.equal(rows[1].secondaryPeriod,13);assert.equal(rows[0].tertiary,null);assert.equal(rows[0].windWave,.4);assert.equal(rows[0].swellDirection,null)});
 
 import { nearestBuoys, parseReadings } from '../src/buoys.js';
+import { tideAt, tideStation } from '../src/tides.js';
 
 test('the closest wave buoys are ordered by distance and limited to three nearby stations', () => {
   const { point: [, lat, lon] } = c.presetForLabel('Indian Beach, NC');
@@ -24,6 +25,25 @@ test('the closest wave buoys are ordered by distance and limited to three nearby
 test('the distance calculation works across the antimeridian', () => {
   const [station] = nearestBuoys([{ id: 'west', lat: 0, lon: -179.8 }], { lat: 0, lon: 179.8 });
   assert.ok(Math.abs(station.km - 44.5) < .1);
+});
+
+test('tides use the ocean pier for Indian Beach and require nearby station coverage', () => {
+  const { point: [label, lat, lon] } = c.presetForLabel('Indian Beach, NC');
+  const stations = [
+    { id: '8656467', lat: 34.73, lng: -76.80 },
+    { id: '8656590', lat: 34.6933, lng: -76.7117 },
+  ];
+  assert.equal(tideStation(stations, { label, lat, lon }).id, '8656590');
+  assert.equal(tideStation(stations, { lat, lon }).id, '8656467');
+  assert.equal(tideStation(stations, { lat: 50.43, lon: -5.13 }), undefined);
+});
+
+test('tide readouts preserve negative heights and gaps between predictions', () => {
+  const samples = [{ time: 0, value: -.2 }, { time: 360, value: .2 }, { time: 1080, value: .6 }];
+  assert.equal(tideAt(samples, 0), -.2);
+  assert.equal(tideAt(samples, 180), 0);
+  assert.equal(tideAt(samples, 720), null);
+  assert.equal(tideAt(samples, 1200), null);
 });
 
 test('buoy readings use station and timestamp, skip missing heights, and preserve missing optional fields', () => {
