@@ -16,6 +16,6 @@ Tide predictions have a separate height scale directly below the swell chart. Th
 
 The wind chart plots hourly [Open-Meteo](https://open-meteo.com/en/docs) wind speed at 10 m in mph or km/h. Arrows point in the direction the wind is blowing toward. Hover or select an hour for the wind's compass direction of origin. Hover, tap, or use the forecast hour slider to line up the same hour across all available charts. The swell chart remains available when NOAA tides or the wind forecast are unavailable.
 
-The dashed line on the wind chart shows hourly air temperature at 2 m. The right axis and hourly readouts use degrees Fahrenheit even when wind speed is shown in km/h. Gaps indicate missing forecast values.
+The mint green line on the wind chart shows hourly air temperature at 2 m. The right axis and hourly readouts use degrees Fahrenheit even when wind speed is shown in km/h. Gaps indicate missing forecast values.
 
 Lighter bands mark daylight from local sunrise to sunset on all three charts. Darker bands mark night. Hover or select an hour to see that day’s sunrise and sunset times. The Open-Meteo weather response supplies the daily solar events when available.
