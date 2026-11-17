@@ -1,6 +1,6 @@
 # SurfCoder Regional Surf Report
 
-Choose a surf region or coordinates and compare live marine forecasts, swell periods, directions, and wind.
+Choose a surf region or coordinates and compare marine forecasts with measurements from nearby NOAA wave buoys.
 
 **Language:** JavaScript · **License:** MIT · **Data:** Local by default
 
@@ -8,6 +8,7 @@ Choose a surf region or coordinates and compare live marine forecasts, swell per
 
 - Twelve regions, including 46 named North Carolina beaches, plus custom coordinates
 - Seven-day live wave, swell and wind forecasts
+- Recent NOAA buoy observations ranked by distance from the selected location
 - Local-time day selection, metric/imperial units, saved location and CSV
 
 ## Requirements
@@ -17,12 +18,11 @@ Node.js 22+ for tests; Python 3 for the optional local HTTP server.
 ## Install, validate, and run
 
 ```sh
-npm install --ignore-scripts
-npm test
-npm start
+node --test tests/core.test.js
+python -m http.server 8080 --bind 127.0.0.1
 ```
 
-Open http://127.0.0.1:8080 in a modern browser. TypeScript source compiles to `dist/` when running `npm test` or `npm run build`. Start audio with an explicit button click.
+Open http://127.0.0.1:8080 in a modern browser. The app runs directly from its HTML, CSS, and JavaScript files.
 
 ## Usage and examples
 
@@ -47,3 +47,15 @@ Choose **North Carolina** under Your region, then choose a named beach under For
 ## Seven-day swell explorer
 
 The live demo now includes separate combined-sea, swell, secondary/tertiary swell, and wind-wave graphs with height/period views, component toggles, an hourly readout, and daily maximum tables. Missing model components remain unavailable. See [data and limitations](docs/weekly-forecast.md). All new graph data is from Open-Meteo; no buoy observations are implied.
+
+## Nearby buoys
+
+The report opens at **Indian Beach, NC** unless a different location was explicitly saved. Select **Nearby buoys** to see the three closest stations in the wave buoy catalog within 250 km. For Indian Beach, NOAA station [41159, Onslow Bay Outer](https://www.ndbc.noaa.gov/station_page.php?station=41159), is about 33 miles away.
+
+The nearby view shows significant wave height, peak period, wave direction, water temperature, and up to eight recent observations from the [NOAA CoastWatch NDBC dataset](https://coastwatch.pfeg.noaa.gov/erddap/tabledap/cwwcNDBCMet.html). Readings older than three hours are marked. The display uses your chosen units and your browser’s local time. Choose **Station and recent history** for additional records, including the swell and wind-wave breakdown when NOAA provides it. **Search nearby on NOAA** covers stations outside the app’s catalog.
+
+The site ships with a station catalog containing IDs, names, and coordinates. Refresh it with Python 3 when station deployments change.
+
+    python scripts/update-buoy-catalog.py
+
+The script joins NOAA’s Active Station List with its latest observations and keeps moored buoys reporting wave height. Updating it changes the nearby station choices. The report loads new readings from NOAA independently of catalog updates. It uses NOAA’s browser JSONP endpoint in a sandboxed frame, while the page renders the readings itself. When publishing at surfingcoder.com, copy the updated catalog to the site’s surf report directory.
