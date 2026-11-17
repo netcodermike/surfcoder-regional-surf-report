@@ -9,7 +9,7 @@ Choose a surf region or coordinates and compare marine forecasts with measuremen
 - Twelve regions, including 46 named North Carolina beaches, plus custom coordinates
 - Seven-day live wave, swell and wind forecasts
 - Recent NOAA buoy observations ranked by distance from the selected location
-- Full-width seven-day swell graph and a latest-first hourly forecast table in local time
+- Full-width seven-day swell graph with hover readings and a collapsible chronological hourly forecast in local time
 - Metric/imperial units, saved location and CSV
 
 ## Requirements
@@ -53,7 +53,7 @@ The live demo now includes separate combined-sea, swell, secondary/tertiary swel
 
 The report opens at **Indian Beach, NC** unless a different location was explicitly saved. Select **Nearby buoys** to see the three closest stations in the wave buoy catalog within 250 km. For Indian Beach, NOAA station [41159, Onslow Bay Outer](https://www.ndbc.noaa.gov/station_page.php?station=41159), is about 33 miles away.
 
-The nearby view shows significant wave height, peak period, wave direction, water temperature, and up to eight recent observations from the [NOAA CoastWatch NDBC dataset](https://coastwatch.pfeg.noaa.gov/erddap/tabledap/cwwcNDBCMet.html). Readings older than three hours are marked. The display uses your chosen units and your browser’s local time. Choose **Station and recent history** for additional records, including the swell and wind-wave breakdown when NOAA provides it. **Search nearby on NOAA** covers stations outside the app’s catalog.
+The nearby view shows significant wave height, peak period, wave direction, water temperature, and the available readings from the past 36 hours, newest first. For station 41159 it uses the [buoy operator’s feed via SECOORA](https://erddap.secoora.org/erddap/tabledap/41159-lej3wave-lej3w-onslow-b.html), with the [NOAA CoastWatch NDBC dataset](https://coastwatch.pfeg.noaa.gov/erddap/tabledap/cwwcNDBCMet.html) as a fallback. Other stations use NOAA CoastWatch. Readings older than three hours are marked. The display uses your chosen units and your browser’s local time. Choose **Station and recent history** for additional records, including the swell and wind-wave breakdown when NOAA provides it. **Search nearby on NOAA** covers stations outside the app’s catalog.
 
 The site ships with a station catalog containing IDs, names, and coordinates. Refresh it with Python 3 when station deployments change.
 
