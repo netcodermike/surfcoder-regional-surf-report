@@ -1,4 +1,4 @@
-# SurfCoder Regional Surf Report
+# SurfingCoder Regional Surf Report
 
 Choose a surf region or coordinates and compare marine forecasts with measurements from nearby NOAA wave buoys.
 

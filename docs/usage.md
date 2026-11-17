@@ -1,4 +1,4 @@
-# Using SurfCoder Regional Surf Report
+# Using SurfingCoder Regional Surf Report
 
 ## Quick start
 

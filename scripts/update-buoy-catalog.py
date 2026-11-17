@@ -11,7 +11,7 @@ NDBC = 'https://www.ndbc.noaa.gov'
 
 
 def fetch(path):
-    request = Request(NDBC + path, headers={'User-Agent': 'SurfCoder Regional Surf Report'})
+    request = Request(NDBC + path, headers={'User-Agent': 'SurfingCoder Regional Surf Report'})
     with urlopen(request, timeout=25) as response:
         return response.read()
 
