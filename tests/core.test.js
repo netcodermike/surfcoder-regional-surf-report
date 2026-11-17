@@ -10,6 +10,13 @@ test('air temperatures align by timestamp and preserve sparse and subzero readin
   assert.deepEqual(rows.map(row => row.airTemperatureF), [undefined, -5, 0, null]);
 });
 
+test('rain chance aligns by forecast hour and preserves zero and missing values', () => {
+  const rows = c.align({ hourly: { time: [1, 2, 3, 4] } }, {
+    hourly: { time: [3, 2, 4], precipitation_probability: [100, 0, null] },
+  });
+  assert.deepEqual(rows.map(row => row.rainChance), [undefined, 0, 100, null]);
+});
+
 import { nearestBuoys, parseReadings } from '../src/buoys.js';
 import { tideAt, tideStation } from '../src/tides.js';
 
