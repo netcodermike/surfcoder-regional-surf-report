@@ -8,4 +8,4 @@ Wave heights are significant modeled heights, not breaking-wave observations. Co
 
 Use the **Nearby buoys** view for timestamped offshore measurements from NOAA stations.
 
-On the height graph, hollow circles mark periods at sampled hours. Larger circles mean longer periods, and each circle takes the color of its height series. The markers appear at wider intervals on phones. Hover or select an hour to read the exact period.
+The height graph shows height on the left axis and period in seconds on the right. Blue dots plot the selected Period dots series at sampled hours. Swell is selected by default when it is available and visible. Use the picker to inspect another visible series, or hover or select an hour for the exact values.
