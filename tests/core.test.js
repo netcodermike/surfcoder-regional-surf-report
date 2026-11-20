@@ -17,7 +17,7 @@ test('rain chance aligns by forecast hour and preserves zero and missing values'
   assert.deepEqual(rows.map(row => row.rainChance), [undefined, 0, 100, null]);
 });
 
-import { nearestBuoys, parseReadings } from '../src/buoys.js';
+import { mergeWaveReadings, nearestBuoys, parseReadings } from '../src/buoys.js';
 import { tideAt, tideStation } from '../src/tides.js';
 
 test('the closest wave buoys are ordered by distance and limited to three nearby stations', () => {
@@ -74,4 +74,14 @@ test('buoy readings use station and timestamp, skip missing heights, and preserv
   assert.deepEqual(readings.map(row => row.wave), [1.1, .9]);
   assert.equal(readings[0].direction, null);
   assert.equal(readings[0].time, Date.parse('2026-11-16T19:26:00Z'));
+});
+
+test('detailed buoy observations match nearby timestamps without reusing a standard reading', () => {
+  const standard = [{ time: 1800000, period: 6, temperature: 20 }, { time: 3600000, period: 8 }];
+  const detailed = [{ time: 1560000, swell: .4 }, { time: 1500000, swell: .5 }];
+  assert.deepEqual(mergeWaveReadings(standard, detailed), [
+    { time: 3600000, period: 8 },
+    { time: 1560000, period: 6, temperature: 20, swell: .4 },
+    { time: 1500000, swell: .5 },
+  ]);
 });
