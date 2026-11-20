@@ -51,7 +51,7 @@ The seven-day explorer shows combined sea, swell, secondary and tertiary swell, 
 
 ## Nearby buoys
 
-The report opens at **Indian Beach, NC** unless a different location was explicitly saved. The nearest buoy’s recent observations appear by default beneath the charts. Pick from up to three stations in the wave buoy catalog within 250 km, or select **Nearby buoys** to focus on observations. For Indian Beach, NOAA station [41159, Onslow Bay Outer](https://www.ndbc.noaa.gov/station_page.php?station=41159), is about 33 miles away.
+The report opens at **Indian Beach, NC** unless a different location was explicitly saved. The nearest buoy’s recent observations appear by default beneath the charts. Pick from up to three stations in the wave buoy catalog within 250 km. For Indian Beach, NOAA station [41159, Onslow Bay Outer](https://www.ndbc.noaa.gov/station_page.php?station=41159), is about 33 miles away.
 
 The 24-hour chart draws height lines and matching period circles for combined sea, swell, and wind waves. Hollow circles show average period. Hover, tap, or use the observation slider to inspect all measurements at a timestamp. The table shows up to 36 hours, newest first.
 

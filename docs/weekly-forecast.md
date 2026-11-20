@@ -6,7 +6,7 @@ The existing Open-Meteo best-match marine endpoint still supplies seven days in 
 
 Wave heights are significant modeled heights, not breaking-wave observations. Combined sea includes the components; heights cannot be added arithmetically. Swell partition ordering can change between hours and is not persistent storm tracking. All times use the selected location's IANA timezone. The existing feet/metres selector also updates the weekly graph.
 
-Recent offshore buoy observations appear beneath the charts, newest first. Use **Nearby buoys** for an observations-only view.
+Recent offshore buoy observations appear beneath the charts, newest first.
 
 The height graph shows height on the left axis and period in seconds on the right. Blue dots plot the selected Period dots series at sampled hours. Combined sea is selected by default when it is available and visible. Use the picker to inspect another visible series, or hover or select an hour for the exact values.
 
