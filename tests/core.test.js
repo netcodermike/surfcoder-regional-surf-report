@@ -62,10 +62,10 @@ test('tide readouts preserve negative heights and gaps between predictions', () 
 
 test('buoy readings use station and timestamp, skip missing heights, and preserve missing optional fields', () => {
   const data = { table: {
-    columnNames: ['time', 'station', 'DPD', 'WVHT', 'WTMP', 'MWD'],
+    columnNames: ['time', 'station', 'DPD', 'WVHT', 'WTMP', 'MWD', 'APD'],
     rows: [
-      ['2026-11-16T18:26:00Z', '41159', 7, .9, 20, 92],
-      ['2026-11-16T19:26:00Z', '41159', 8, 1.1, null, null],
+      ['2026-11-16T18:26:00Z', '41159', 7, .9, 20, 92, 5.1],
+      ['2026-11-16T19:26:00Z', '41159', 8, 1.1, null, null, 6.0],
       ['2026-11-16T19:56:00Z', '41159', 8, null, 20, 90],
       ['2026-11-16T20:26:00Z', '44056', 5, .4, 16, 85],
     ],
@@ -73,6 +73,8 @@ test('buoy readings use station and timestamp, skip missing heights, and preserv
   const readings = parseReadings(data, '41159');
   assert.deepEqual(readings.map(row => row.wave), [1.1, .9]);
   assert.equal(readings[0].direction, null);
+  assert.equal(readings[0].averagePeriod, 6.0);
+  assert.equal(Object.hasOwn(readings[0], 'period'), false);
   assert.equal(readings[0].time, Date.parse('2026-11-16T19:26:00Z'));
 });
 
