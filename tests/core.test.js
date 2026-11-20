@@ -73,14 +73,14 @@ test('buoy readings use station and timestamp, skip missing heights, and preserv
   const readings = parseReadings(data, '41159');
   assert.deepEqual(readings.map(row => row.wave), [1.1, .9]);
   assert.equal(readings[0].direction, null);
-  assert.equal(readings[0].averagePeriod, 6.0);
-  assert.equal(Object.hasOwn(readings[0], 'period'), false);
+  assert.equal(readings[0].period, 8);
+  assert.equal(Object.hasOwn(readings[0], 'averagePeriod'), false);
   assert.equal(readings[0].time, Date.parse('2026-11-16T19:26:00Z'));
 });
 
 test('detailed buoy observations match nearby timestamps without reusing a standard reading', () => {
   const standard = [{ time: 1800000, period: 6, temperature: 20 }, { time: 3600000, period: 8 }];
-  const detailed = [{ time: 1560000, swell: .4 }, { time: 1500000, swell: .5 }];
+  const detailed = [{ time: 1560000, swell: .4, period: 7 }, { time: 1500000, swell: .5 }];
   assert.deepEqual(mergeWaveReadings(standard, detailed), [
     { time: 3600000, period: 8 },
     { time: 1560000, period: 6, temperature: 20, swell: .4 },
