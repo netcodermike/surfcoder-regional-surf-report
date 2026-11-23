@@ -45,15 +45,15 @@ Run the validation commands above before submitting changes. GitHub Actions runs
 
 Choose **North Carolina** under Your region, then choose a named beach under Forecast location. The 46 locations are grouped into five coastal areas. See [the beach catalogue](docs/north-carolina-beaches.md). Nearby beaches may share an offshore model cell; named presets do not imply beach-specific observations.
 
-## Seven-day swell explorer
+## Swell explorer
 
-The seven-day explorer shows combined sea, swell, secondary and tertiary swell, and wind waves with height and period views. NOAA tide heights and Open-Meteo wind speed and direction have their own charts on the same timeline. Hover over any chart or select an hour to compare the forecasts. See [data sources and coverage](docs/weekly-forecast.md).
+The forecast shows wave heights with optional period dots and direction arrows. Choose a 1-, 2-, 3-, or 7-day range. It opens at seven days on wider screens and two days on screens up to 600 pixels wide. The tide and wind chart and the temperature and rain chart use the same timeline. Hover over any chart or select an hour to compare the forecasts. See [data sources and coverage](docs/weekly-forecast.md).
 
 ## Nearby buoys
 
 The report opens at **Indian Beach, NC** unless a different location was explicitly saved. The nearest buoy’s recent observations appear by default beneath the charts. Pick from up to three stations in the wave buoy catalog within 250 km. For Indian Beach, NOAA station [41159, Onslow Bay Outer](https://www.ndbc.noaa.gov/station_page.php?station=41159), is about 33 miles away.
 
-The 48-hour chart draws height lines for combined sea, swell, and wind waves. Matching circles show combined sea peak period, swell period, and wind-wave period. Use the legend checkboxes to toggle each layer. Wind waves start hidden. Hover, tap, or use the slider to inspect each observation. The table shows up to 48 hours, newest first, and includes peak, swell, and wind-wave periods when available.
+The observation chart and table default to the last two days. Choose 1, 2, 3, or 7 days of available readings. The chart shows heights for combined sea, swell, and wind waves, with matching period dots and direction arrows. Use the legend checkboxes to toggle layers, arrows, and dots. Wind waves start hidden. Hover, tap, or use the slider to inspect each observation. The table lists readings newest first.
 
 The Surf Report fetches the [NOAA standard observations and detailed wave summaries](https://www.ndbc.noaa.gov/faq/rt_data_access.shtml) on demand through the SurfingCoder buoy service, which caches successful responses for three minutes. The scheduled GitHub data branch is a fallback when the live service cannot provide recent readings. The report checks for new records every five minutes while open and lets you refresh manually. Newer basic readings also come from the [buoy operator’s feed via SECOORA](https://erddap.secoora.org/erddap/tabledap/41159-lej3wave-lej3w-onslow-b.html) for station 41159 or the [NOAA CoastWatch buoy feed](https://coastwatch.pfeg.noaa.gov/erddap/tabledap/cwwcNDBCMet.html) for other stations. Basic readings within five minutes can supplement a matching NOAA sample. The report shows how far the detailed data goes if those measurements lag behind the basic feed. Missing measurements remain blank.
 

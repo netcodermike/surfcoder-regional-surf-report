@@ -46,18 +46,24 @@ test('merges the NOAA feeds and caches successful public responses', async conte
   assert.equal(noData.status, 404);
 });
 
-test('serves a full 48-hour observation window with a 12-hour buffer', async context => {
+test('serves seven days of observations with a 12-hour buffer', async context => {
   context.mock.method(Date, 'now', () => time);
   const specs = summary +
-    '2026 11 19 00 56 1.9 0.8 10.5 1.7 9.9 SSE SSE AVERAGE 5.9 159\n' +
-    '2026 11 18 12 56 1.8 0.8 10.5 1.6 9.9 SSE SSE AVERAGE 5.9 159\n' +
-    '2026 11 18 12 55 1.7 0.8 10.5 1.5 9.9 SSE SSE AVERAGE 5.9 159\n';
+    '2026 11 14 00 56 1.9 0.8 10.5 1.7 9.9 SSE SSE AVERAGE 5.9 159\n' +
+    '2026 11 13 12 56 1.8 0.8 10.5 1.6 9.9 SSE SSE AVERAGE 5.9 159\n' +
+    '2026 11 13 12 55 1.7 0.8 10.5 1.5 9.9 SSE SSE AVERAGE 5.9 159\n';
+  const standardHistory = standard +
+    '2026 11 14 00 56 2.0 11 5.9 159 19.1\n' +
+    '2026 11 13 13 26 1.9 10 5.4 155 19.2\n';
   context.mock.method(globalThis, 'fetch', async url =>
-    new Response(url.endsWith('.spec') ? specs : standard));
+    new Response(url.endsWith('.spec') ? specs : standardHistory));
   const result = await worker.fetch(new Request('https://example.test/waves/41159.json'), {}, {});
   const rows = await result.json();
   assert.deepEqual(rows.map(row => row.time), [time, time - 1800000,
-    Date.UTC(2026, 10, 19, 0, 56), Date.UTC(2026, 10, 18, 12, 56)]);
+    Date.UTC(2026, 10, 14, 0, 56), Date.UTC(2026, 10, 13, 13, 26), Date.UTC(2026, 10, 13, 12, 56)]);
+  assert.equal(rows[2].temperature, 19.1);
+  assert.equal(rows[2].swell, .8);
+  assert.equal(rows[3].period, 10);
 });
 
 test('reports an upstream summary failure so the client can use its mirror', async context => {
