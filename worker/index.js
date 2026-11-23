@@ -1,5 +1,5 @@
 const NOAA = 'https://www.ndbc.noaa.gov/data/realtime2/';
-const HISTORY = 36 * 60 * 60 * 1000;
+const HISTORY = 60 * 60 * 60 * 1000;
 const CACHE_SECONDS = 180;
 const directions = new Set('N NNE NE ENE E ESE SE SSE S SSW SW WSW W WNW NW NNW'.split(' '));
 const steepnessValues = new Set(['VERY_STEEP', 'STEEP', 'AVERAGE', 'SWELL']);

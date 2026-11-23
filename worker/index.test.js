@@ -46,6 +46,20 @@ test('merges the NOAA feeds and caches successful public responses', async conte
   assert.equal(noData.status, 404);
 });
 
+test('serves a full 48-hour observation window with a 12-hour buffer', async context => {
+  context.mock.method(Date, 'now', () => time);
+  const specs = summary +
+    '2026 11 19 00 56 1.9 0.8 10.5 1.7 9.9 SSE SSE AVERAGE 5.9 159\n' +
+    '2026 11 18 12 56 1.8 0.8 10.5 1.6 9.9 SSE SSE AVERAGE 5.9 159\n' +
+    '2026 11 18 12 55 1.7 0.8 10.5 1.5 9.9 SSE SSE AVERAGE 5.9 159\n';
+  context.mock.method(globalThis, 'fetch', async url =>
+    new Response(url.endsWith('.spec') ? specs : standard));
+  const result = await worker.fetch(new Request('https://example.test/waves/41159.json'), {}, {});
+  const rows = await result.json();
+  assert.deepEqual(rows.map(row => row.time), [time, time - 1800000,
+    Date.UTC(2026, 10, 19, 0, 56), Date.UTC(2026, 10, 18, 12, 56)]);
+});
+
 test('reports an upstream summary failure so the client can use its mirror', async context => {
   context.mock.method(globalThis, 'fetch', async () => new Response(null, { status: 503 }));
   const request = new Request('https://example.test/waves/41159.json');
