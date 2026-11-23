@@ -18,7 +18,29 @@ test('rain chance aligns by forecast hour and preserves zero and missing values'
 });
 
 import { mergeWaveReadings, nearestBuoys, parseReadings } from '../src/buoys.js';
+import { daylightIntervals } from '../src/daylight.js';
 import { tideAt, tideStation } from '../src/tides.js';
+
+test('buoy daylight keeps the previous sunset after midnight UTC and clips to the chart', () => {
+  const start = Date.UTC(2026, 10, 22);
+  const end = Date.UTC(2026, 10, 23);
+  const bands = daylightIntervals(start, end, { lat: 32.75, lon: -117.3 });
+  assert.equal(bands.length, 2);
+  assert.equal(bands[0].start, start);
+  assert.ok(bands[0].end > start + 40 * 60_000 && bands[0].end < start + 55 * 60_000);
+  assert.ok(bands[1].start > Date.UTC(2026, 10, 22, 14, 15));
+  assert.ok(bands[1].start < Date.UTC(2026, 10, 22, 14, 35));
+  assert.equal(bands[1].end, end);
+});
+
+test('buoy daylight handles continuous polar day and night', () => {
+  const station = { lat: 78, lon: 15 };
+  const summer = Date.UTC(2026, 5, 21);
+  const winter = Date.UTC(2026, 11, 21);
+  const day = 24 * 60 * 60_000;
+  assert.deepEqual(daylightIntervals(summer, summer + 2 * day, station), [{ start: summer, end: summer + 2 * day }]);
+  assert.deepEqual(daylightIntervals(winter, winter + day, station), []);
+});
 
 test('the closest wave buoys are ordered by distance and limited to three nearby stations', () => {
   const { point: [, lat, lon] } = c.presetForLabel('Indian Beach, NC');
